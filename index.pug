@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>OpenKruiseGame Minecraft Demo</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <link rel="stylesheet" href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">
+  <link rel="stylesheet" href="index.css">
+  <script src="//apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="//apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+  <style>
+    body { padding-top: 50px; }
+  </style>
+  <script src="index.js"></script>
+</head>
+<body>
+  <div style="padding: 16px 64px 16px 64px; margin: 64px;border: 2px solid; border-radius: 5px; display: block; height: auto; display: block; overflow: auto; background-color: white;">
+  <video loop autoplay muted class="video-bg" src="images/minecraft.mp4"></video>
+    p(style={"text-align":"center", wdith:"150px", margin: "0 auto", "font-size": "36px"}) 游戏房间列表
+    each gs in gameservers  
+      if gs["status"]["phase"] == "Running" 
+        div(style={display: "block", border: "5px solid","border-color":"green","border-radius":"5px", width: "300px", height: "200px", margin:"16px", "text-align": "center",float: "left"})
+          img(src="./images/logo.png" style={width: "48px", height: "48px", "margin":"16px auto"})
+          p= gs["metadata"]["name"]
+          p(style={"font-weight":"bold"})= "游戏服状态: "+gs["status"]["phase"]
+          p= "活跃玩家数: "+gs["count"]+"/20"
+      else
+        div(style={display: "block", border: "5px solid","border-color":"red","border-radius":"5px", width: "300px", height: "200px", margin:"16px", "text-align": "center",float: "left"})
+          img(src="./images/logo.png" style={width: "48px", height: "48px", "margin":"16px auto"})
+          p= gs["metadata"]["name"]
+          p(style={"font-weight":"bold"})= "游戏服状态: "+gs["status"]["phase"]
+          p= "活跃玩家数: "+gs["count"]+"/20"
+        
+  </div>
+  <div id="progressbar" style="background-color: #FF0000 !important; margin: 64px;"></div>
+  <div style="margin: 0 auto; width: 480px;">
+      <button id="scaleout" class="ui-button ui-widget ui-corner-all" style="display: inline-block; width: 150px;height: 50px; float:left;">模拟玩家涌入</button>
+      <button id="scalein" class="ui-button ui-widget ui-corner-all" style="display: inline-block; width: 150px;height: 50px; float:left;margin-left:80px ">模拟玩家离开</button>
+  </div>
+</body>
+</html>
